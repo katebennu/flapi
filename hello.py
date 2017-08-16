@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask.ext.api import status
 app = Flask(__name__)
 
 
@@ -26,7 +27,7 @@ def post(statement_id):
         print('deleted an id, ' + str(statement_id) + '\n')
         return 'deleted an id, ' + str(statement_id) + '\n'
     else:
-        return 'get works, id: ' + str(statement_id) + '\n'
+        return 'get works, id: ' + str(statement_id) + '\n', status.HTTP_200_OK
 
 
 @app.route('/put/')
