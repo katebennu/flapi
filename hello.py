@@ -15,17 +15,18 @@ def get(index, limit):
         return '[id1, id2, id3], 200\n'
 
 
+# e.g. curl -vX PUT http://127.0.0.1:5000/income-statements/3
 @app.route('/income-statements/<int:statement_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def post(statement_id):
     if request.method == 'POST':
         print('posted new id, ' + str(statement_id) + '\n')
-        return 'posted new id, ' + str(statement_id) + '\n'
+        return 'posted new id, ' + str(statement_id) + '\n', status.HTTP_201_CREATED
     if request.method == 'PUT':
         print('put new id, ' + str(statement_id) + '\n')
-        return 'put new id, ' + str(statement_id) + '\n'
+        return 'put new id, ' + str(statement_id) + '\n', status.HTTP_204_NO_CONTENT
     if request.method == 'DELETE':
         print('deleted an id, ' + str(statement_id) + '\n')
-        return 'deleted an id, ' + str(statement_id) + '\n'
+        return 'deleted an id, ' + str(statement_id) + '\n', status.HTTP_204_NO_CONTENT
     else:
         return 'get works, id: ' + str(statement_id) + '\n', status.HTTP_200_OK
 
